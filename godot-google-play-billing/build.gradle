@@ -6,12 +6,12 @@ ext.pluginVersionCode = 4
 ext.pluginVersionName = "1.1.2"
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 18
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode pluginVersionCode
         versionName pluginVersionName
     }
