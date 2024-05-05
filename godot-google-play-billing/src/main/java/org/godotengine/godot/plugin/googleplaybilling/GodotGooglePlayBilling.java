@@ -205,27 +205,27 @@ public class GodotGooglePlayBilling extends GodotPlugin implements PurchasesUpda
 	public void onBillingServiceDisconnected() {
 		emitSignal("disconnected");
 	}
-	@UsedByGodot
-	public Dictionary confirmPriceChange(String sku) {
-		if (!skuDetailsCache.containsKey(sku)) {
-			Dictionary returnValue = new Dictionary();
-			returnValue.put("status", 1); // FAILED = 1
-			returnValue.put("response_code", null); // Null since there is no ResponseCode to return but to keep the interface (status, response_code, debug_message)
-			returnValue.put("debug_message", "You must query the sku details and wait for the result before confirming a price change!");
-			return returnValue;
-		}
-
-		SkuDetails skuDetails = skuDetailsCache.get(sku);
-
-		PriceChangeFlowParams priceChangeFlowParams = 
-			PriceChangeFlowParams.newBuilder().setSkuDetails(skuDetails).build();
-
-		billingClient.launchPriceChangeConfirmationFlow(getActivity(), priceChangeFlowParams, this);
-		
-		Dictionary returnValue = new Dictionary();
-		returnValue.put("status", 0); // OK = 0
-		return returnValue;
-	}
+	// @UsedByGodot
+	// public Dictionary confirmPriceChange(String sku) {
+	// 	if (!skuDetailsCache.containsKey(sku)) {
+	// 		Dictionary returnValue = new Dictionary();
+	// 		returnValue.put("status", 1); // FAILED = 1
+	// 		returnValue.put("response_code", null); // Null since there is no ResponseCode to return but to keep the interface (status, response_code, debug_message)
+	// 		returnValue.put("debug_message", "You must query the sku details and wait for the result before confirming a price change!");
+	// 		return returnValue;
+	// 	}
+	//
+	// 	SkuDetails skuDetails = skuDetailsCache.get(sku);
+	//
+	// 	PriceChangeFlowParams priceChangeFlowParams = 
+	// 		PriceChangeFlowParams.newBuilder().setSkuDetails(skuDetails).build();
+	//
+	// 	billingClient.launchPriceChangeConfirmationFlow(getActivity(), priceChangeFlowParams, this);
+	//	
+	// 	Dictionary returnValue = new Dictionary();
+	// 	returnValue.put("status", 0); // OK = 0
+	// 	return returnValue;
+	// }
 	@UsedByGodot
 	public Dictionary purchase(String sku) {
 		return purchaseInternal("", sku,
